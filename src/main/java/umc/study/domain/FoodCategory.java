@@ -1,7 +1,7 @@
 package umc.study.domain;
 import lombok.*;
 import umc.study.domain.common.BaseEntity;
-import umc.study.domain.mapping.Favor;
+import umc.study.domain.mapping.MemberPrefer;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,12 +12,13 @@ import java.util.List;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Category extends BaseEntity {
-
+public class FoodCategory extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column(nullable = false, length = 20)
-    private String c_name;
+    private Long id;
+    @Column(nullable = false, length = 15)
+    private String name;
 
+    @OneToMany(mappedBy = "foodCategory", cascade = CascadeType.ALL)
+    private List<MemberPrefer> memberPreferList = new ArrayList<>();
 }

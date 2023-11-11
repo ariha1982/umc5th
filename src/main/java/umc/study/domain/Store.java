@@ -1,7 +1,6 @@
 package umc.study.domain;
 import lombok.*;
 import umc.study.domain.common.BaseEntity;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,18 +13,16 @@ import java.util.List;
 public class Store extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column(nullable = false, length = 45)
-    private String s_name;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category")
-    private Category category;
-    @Column(nullable = false, length = 100)
+    private Long id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "region_id")
+    private Region region;
+    @Column(nullable = false, length = 50)
+    private String name;
+    @Column(nullable = false, length = 50)
     private String address;
-    private Integer num;
+    private Float score;
 
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Review> reviewList = new ArrayList<>();
-    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
-    private List<Mission> missionList = new ArrayList<>();
 }

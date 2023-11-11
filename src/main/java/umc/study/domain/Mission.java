@@ -1,9 +1,11 @@
 package umc.study.domain;
 import lombok.*;
 import umc.study.domain.common.BaseEntity;
-
+import umc.study.domain.mapping.MemberMission;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -13,11 +15,15 @@ import java.time.LocalDate;
 public class Mission extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "s_id")
+    @JoinColumn(name = "store_id")
     private Store store;
-    private Integer fee;
     private Integer reward;
-    private LocalDate expired_at;
+    private LocalDate deadline;
+    @Column(columnDefinition = "TEXT")
+    private String mission_spec;
+
+    @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
+    private List<MemberMission> memberMissionList = new ArrayList<>();
 }

@@ -1,9 +1,8 @@
 package umc.study.domain.mapping;
 import lombok.*;
-import umc.study.domain.Category;
-import umc.study.domain.User;
+import umc.study.domain.FoodCategory;
+import umc.study.domain.Member;
 import umc.study.domain.common.BaseEntity;
-import umc.study.domain.enums.MStatus;
 
 import javax.persistence.*;
 
@@ -12,14 +11,14 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Favor extends BaseEntity{
+public class MemberPrefer extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "u_id")
-    private User user;
+    @JoinColumn(name = "member_id")
+    private Member member;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "c_id")
-    private Category category;
+    @JoinColumn(name = "category_id")
+    private FoodCategory foodCategory;
 }
