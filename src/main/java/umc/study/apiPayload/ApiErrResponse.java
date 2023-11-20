@@ -17,7 +17,7 @@ public class ApiErrResponse<T> {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private T result;
 
-    public static <T> ApiResponse<T> onFailure(String code, String message, T data){
-        return new ApiResponse<>(false, code, message, data);
+    public static <T> ApiErrResponse<T> onFailure(String code, String message, T data){
+        return new ApiErrResponse<>(false, code, message, data);
     }
 }
