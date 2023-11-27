@@ -1,23 +1,17 @@
 package umc.study.web.dto;
 
 import lombok.Getter;
-import umc.study.domain.Member;
-import umc.study.domain.Store;
-import umc.study.validation.annotaion.ExistMember;
 import umc.study.validation.annotaion.ExistStore;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 public class ReviewRequestDTO {
 
     @Getter
     public static class PostDTO {
-        @NotNull
-        @ExistMember
+        //@ExistMember
         Long memberId;
-        @NotNull
         @ExistStore
         Long storeId;
         @Size(min = 5, max = 200)
