@@ -21,12 +21,18 @@ import umc.study.web.dto.ReviewRequestDTO;
 public class ReviewCommandServiceImpl implements ReviewCommandService{
 
     private final ReviewRepository reviewRepository;
+    private final MemberRepository memberRepository;
+    private final StoreRepository storeRepository;
 
     @Override
     @Transactional
     public Review postReview(ReviewRequestDTO.PostDTO request){
+        Member member = memberRepository.findById(request.getMemberId())
+                .orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
+        Store store = storeRepository.findById(request.getStoreId())
+                .orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
 
-        Review newReview = ReviewConverter.toReview(request);
+        Review newReview = ReviewConverter.toReview(request, member, store);
 
         return reviewRepository.save(newReview);
     }

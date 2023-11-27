@@ -13,11 +13,10 @@ import umc.study.web.dto.ReviewRequestDTO;
 import umc.study.web.dto.ReviewResponseDTO;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @RequiredArgsConstructor
 public class ReviewConverter {
-    private final StoreRepository storeRepository;
-    private final MemberRepository memberRepository;
     public static ReviewResponseDTO.PostResultDTO toPostResultDTO(Review review){
         return ReviewResponseDTO.PostResultDTO.builder()
                 .reviewId(review.getId())
@@ -25,14 +24,7 @@ public class ReviewConverter {
                 .build();
     }
 
-    public static Review toReview(ReviewRequestDTO.PostDTO request){
-
-        Member member = memberRepository.findById(request.getMemberId())
-                .orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
-
-        Store store = storeRepository.findById(request.getStoreId())
-                .orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
-
+    public static Review toReview(ReviewRequestDTO.PostDTO request, Member member, Store store){
         return Review.builder()
                 .member(member)
                 .store(store)
