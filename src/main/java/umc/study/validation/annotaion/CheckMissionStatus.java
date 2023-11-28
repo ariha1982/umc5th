@@ -1,17 +1,19 @@
 package umc.study.validation.annotaion;
 
-import umc.study.validation.validator.MemberExistValidator;
+import umc.study.validation.validator.MissionStatusCheckValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = MemberExistValidator.class)
+@Constraint(validatedBy = MissionStatusCheckValidator.class)
 @Target( { ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER } )
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ExistMember {
-    String message() default "해당 회원이 존재하지 않습니다.";
+public @interface CheckMissionStatus {
+
+    String message() default "이미 도전중인 미션입니다.";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
+
 }

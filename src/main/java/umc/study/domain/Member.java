@@ -44,7 +44,7 @@ public class Member extends BaseEntity {
     @Column(columnDefinition = "VARCHAR(10)")
     private Gender gender;
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "VARCHAR(15) DEFAULT `ACTIVE`")
+    @Column(columnDefinition = "VARCHAR(15) DEFAULT 'ACTIVE'")
     private Status status;
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(10)")
