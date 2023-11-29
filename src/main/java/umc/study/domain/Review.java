@@ -3,11 +3,8 @@ import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import umc.study.domain.common.BaseEntity;
-import umc.study.validation.annotaion.ExistMember;
-import umc.study.validation.annotaion.ExistStore;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +25,8 @@ public class Review extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
     private Store store;
+    @Column(columnDefinition = "varchar(50)")
+    private String title;
     @Column(columnDefinition = "TEXT")
     private String body;
     private Float score;

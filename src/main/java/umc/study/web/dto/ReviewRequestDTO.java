@@ -14,6 +14,8 @@ public class ReviewRequestDTO {
         Long memberId;
         @ExistStore
         Long storeId;
+        @Size(min = 1, max = 50)
+        String title;
         @Size(min = 5, max = 200)
         String body;
         @NotNull

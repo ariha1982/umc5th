@@ -5,7 +5,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class MemberResponseDTO {
 
@@ -25,5 +27,54 @@ public class MemberResponseDTO {
     public static class AddMissionResultDTO {
         Long memberMissionId;
         LocalDateTime cratedAt;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MemberReviewPreViewListDTO{
+        List<MemberResponseDTO.MemberReviewPreViewDTO> reviewList;
+        Integer listSize;
+        Integer totalPage;
+        Long totalElements;
+        Boolean isFirst;
+        Boolean isLast;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MemberReviewPreViewDTO{
+        String reviewerNickname;
+        Float score;
+        String body;
+        LocalDate createdAt;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MemberMissionPreViewListDTO{
+        List<MemberResponseDTO.MemberMissionPreViewDTO> missionList;
+        Integer listSize;
+        Integer totalPage;
+        Long totalElements;
+        Boolean isFirst;
+        Boolean isLast;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MemberMissionPreViewDTO{
+        String storeName;
+        Integer reward;
+        LocalDate deadline;
+        String missionSpec;
+        LocalDate createdAt;
     }
 }
